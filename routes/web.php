@@ -70,5 +70,9 @@ Route::group(['middleware' => ['web', 'client']], function () {
     Route::prefix('/home')->group(function () {
         Route::get('/', [ClientController::class, 'loadData']);
         Route::get('/product-details/{product}', [ClientController::class, 'loadProductDetail'])->name('productDetails.load');
+        Route::get('/cart', [ClientController::class, 'loadCart'])->name('cart.load');
+        Route::get('/add-to-cart/{id}', [ClientController::class, 'addToCart'])->name('cart.add');
+        Route::delete('/remove-cart', [ClientController::class, 'removeCart'])->name('cart.remove');
+        Route::patch('/update-cart', [ClientController::class, 'updateCart'])->name('cart.update');
     });
 });

@@ -3,6 +3,24 @@
 @section('content')
     <div class="py-2"></div>
     <div class="container my-5">
+
+        <!-- Breadcrumb -->
+        <div class="card mb-2">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mt-3 px-3">
+                      <li class="breadcrumb-item">
+                        <a href="javascript:void(0);">Home</a>
+                      </li>
+                      <li class="breadcrumb-item">
+                        <a href="javascript:void(0);">Library</a>
+                      </li>
+                      <li class="breadcrumb-item active">Data</li>
+                    </ol>
+                  </nav>
+        </div>
+        <!-- End Breadcrumb -->
+
+        <!-- Start Product Details -->
         <div class="card">
             <div class="card-body">
                 <div class="row">
@@ -31,7 +49,8 @@
                         @if ($product_details->discount_price != null)
                         <div class="mt-3 p-1" style="background-color: #fafafa">
                             <span class="card-text">Giảm giá : </span>
-                            <span class="text-danger fs-4 fw-bold">{{ $product_details->discount_price }} VNĐ</span>
+                            <span class="text-danger fs-4 fw-bold">{{ number_format($product_details->discount_price) }} VNĐ</span>
+                            
                         </div>
                         @else
                         <div class="mt-3 p-1">
@@ -45,7 +64,7 @@
                         </div>
                         <div class="row mt-3">
                             <div class="col-sm-4 col-lg-4">
-                                <div class="input-group form-control">
+                                <div class="input-group form-control" >
                                     <span class="input-group-btn">
                                         <button type="button" class="quantity-left-minus btn btn-number" data-type="minus" data-field="">
                                             <span class=""><i class="bx bx-minus"></i></span>
@@ -75,13 +94,13 @@
         <div class="card mt-3">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-lg-8 text-center border-end">
+                    <div class="col-lg-8 text-center">
                         <h4 class="text-center mb-4 pb-2">Chi tiết sản phẩm</h4>
                         <span>
                             {!! $product_details->description !!}
                         </span>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-4 md:border-start">
                         <div class="row">
                             <div class="card mb-3 mx-1">
                                 <div class="card-body">
@@ -165,6 +184,9 @@
                 </div>
             </div>
         </div>
+        <!-- End Product Details -->
+
+        <!-- Start Comment Feedback Product -->
         <div class="mt-3">
             <div class="card">
                 <div class="row d-flex justify-content-center">
@@ -328,21 +350,20 @@
                 </div>
             </div>
         </div>
+        <!-- End Comment Feedback Product -->
     </div>
 @endsection
 @push('js')
     <script>
-        $(document).ready(function() {
 
+        // Click Quantity
+        $(document).ready(function() {
             var quantitiy = 0;
             $('.quantity-right-plus').click(function(e) {
-
                 e.preventDefault();
                 var quantity = parseInt($('#quantity').val());
-
                 $('#quantity').val(quantity + 1);
             });
-
             $('.quantity-left-minus').click(function(e) {
                 e.preventDefault();
                 var quantity = parseInt($('#quantity').val());
