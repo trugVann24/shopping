@@ -193,71 +193,68 @@
                 <div class="">
                     <ul class="navbar-nav ms-lg-auto">
                         <li class="nav-item btn-group" id="hover-dropdown-demo">
-                            <a class="nav-link dropdown-toggle hide-arrow" href="{{ route('cart.load') }}"
-                                data-bs-toggle="dropdown" data-trigger="hover" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle hide-arrow" href="" data-bs-toggle="dropdown"
+                                data-trigger="hover" aria-expanded="false">
                                 <i class="bx bx-cart bx-sm"></i>
                                 <span
-                                    class="badge bg-danger rounded-pill badge-notifications">{{ count((array) session('cart')) }}</span>
+                                    class="badge bg-danger rounded-pill badge-notifications">{{ Cart::count() }}</span>
                             </a>
                             <ul class="dropdown-menu"data-popper-placement="left-end"
                                 style="position: absolute; inset: auto 0px 0px auto; margin: 0px; transform: translate3d(-26px, 100%, 0px);">
                                 <li class="">
                                     <div class="dropdown-item">
                                         <div class="row ">
-                                            @php
-                                                $total = 0;
-                                            @endphp
-                                            @if (session('cart'))
-                                                @foreach (session('cart') as $id => $product)
-                                                    @php
-                                                        $total += $product['price'] * $product['quantity'];
-                                                    @endphp
+                                            @if (Cart::count() > 0)
+                                                @foreach (Cart::content() as $cart)
                                                     <div class="card mb-3 mx-1">
                                                         <div class="card-body">
                                                             <div class="d-flex justify-content-between">
-                                                                <div class="d-flex flex-row align-items-center">
+                                                                <div class="d-flex flex-row align-items-center mx-1">
                                                                     <div style="width:50px; height: 70px;"
                                                                         class="overflow-hidden object-fit">
-                                                                        <img src="{{ asset('uploads/products/' . $product['image']) }}"
+                                                                        <img src="{{ asset('uploads/products/' . $cart->options->image) }}"
                                                                             class="img-fluid " alt="Shopping item">
                                                                     </div>
                                                                     <div class="ms-4">
-                                                                        <p class="fs-6">{{ $product['name'] }}</p>
+                                                                        <p class="fs-6">{{ $cart->name }}</p>
                                                                         <p class="small mb-0">
                                                                             <span>
                                                                                 Số lượng:
                                                                                 <span class="text-info">
-                                                                                    {{ 'x' . $product['quantity'] }}
+                                                                                    {{ 'x' . $cart->qty }}
                                                                                 </span>
                                                                             </span>
                                                                         </p>
                                                                         <p class="mb-0 small">
                                                                             <span>Giá tiền :
                                                                                 <span class="text-primary">
-                                                                                    {{ number_format($product['price']) . ' VND' }}
+                                                                                    {{ number_format($cart->price * $cart->qty) . ' VND' }}
                                                                                 </span>
                                                                             </span>
                                                                         </p>
                                                                     </div>
                                                                 </div>
-                                                                <div class="d-flex flex-row align-items-center">
-                                                                    <a href="#!"
-                                                                        class="btn btn-outline-danger border-0"><i
-                                                                            class="bx bx-trash"></i></a>
+                                                                <div class="d-flex align-items-center">
+                                                                    <i class="btn btn-outline-danger border-0 bx bx-trash"
+                                                                        onclick="window.location = './cart/delete-to-cart/{{ $cart->rowId }}'"></i>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 @endforeach
                                                 <hr>
-                                                <p>Tổng tiền : <span>{{ number_format($total) . ' VND' }}</span></p>
+                                                <p>
+                                                    Tổng tiền:
+                                                    <span>{{ Cart::total() }}</span>
+                                                </p>
+                                                <a href="{{ route('cart.load') }}" class="btn btn-info ">Xem tất cả
+                                                    <i class='bx bx-chevrons-right'></i>
+                                                </a>
+                                            @else
+                                                <p>Giỏ hàng trống !</p>
+                                            @endif
                                         </div>
                                     </div>
-                                    <a href="{{ route('cart.load') }}" class="btn btn-info w-100">Xem tất cả <i
-                                            class='bx bx-chevrons-right'></i></a>
-                                @else
-                                    <span>Không có sản phẩm trong giỏ hàng </span>
-                                    @endif
                                 </li>
                             </ul>
                         </li>

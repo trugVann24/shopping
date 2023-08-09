@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CategoryEditRequest;
 use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -29,7 +30,7 @@ class CategoryController extends Controller
         return view('admin.category.edit', compact('categories'));
     }
 
-    public function update(CategoryRequest $request){
+    public function update(CategoryEditRequest $request){
         $categories_id = $request->id;
         $categories = Category::findOrFail($categories_id);
         $categories->name = $request->name;

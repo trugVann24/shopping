@@ -245,4 +245,17 @@ body {
     object-fit: cover;
     filter: brightness(0.6);
   }
-  
+  .errors-mess {
+    font-size: 14px;
+    color: #e33939;
+    background-color: #fcefef;
+    margin-top: 10px;
+    padding: 6px 10px;
+    border: 1px solid #e33939;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+}
+.errors-mess i{
+    padding: 4px 6px 0 0;
+}

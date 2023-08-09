@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\SubCategory;
 use App\Models\User;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -67,15 +68,23 @@ class AuthController extends Controller
         }
     }
 
-    
 
     public function admin()
     {
         return view('admin.index');
     }
-    public function menu(){
+
+    public function home(){
         $categories = Category::get();
-        return view('layouts.client', compact('categories'));
+        $sub_categories = SubCategory::get();
+        $products = Product::get();
+        $cart = Cart::content();
+        return view('client.index', compact(
+            'categories', 
+            'sub_categories', 
+            'products',
+            'cart'
+        ));
     }
 
     public function logout(Request $request)

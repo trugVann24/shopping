@@ -15,6 +15,23 @@
             @endforeach
         </div>
     @endif
+    
+    <!-- Breadcrumb -->
+    <div class="card mb-2">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mt-3 px-3">
+                <li class="breadcrumb-item">
+                    <a href="{{ route('admin') }}">Trang chủ</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="">Danh Mục Phụ</a>
+                </li>
+                <li class="breadcrumb-item active">Sửa</li>
+            </ol>
+        </nav>
+    </div>
+    <!-- End Breadcrumb -->
+
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">

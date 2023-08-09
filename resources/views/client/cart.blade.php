@@ -24,126 +24,90 @@
         <div class="card">
             <div class="card-body">
                 <div class="row">
-
-                    @php
-                        $total = 0;
-                    @endphp
-
-                    @if (session('cart'))
-                        @foreach (session('cart') as $id => $product)
-                            @php
-                                $total += $product['price'] * $product['quantity'];
-                            @endphp
-                            <div class="card mb-3 mx-1 cart" data-id={{ $id }}>
+                    @if (Cart::count() > 0)
+                        @foreach ($cart as $item)
+                            <div class="card mb-3 mx-1 cart">
                                 <div class="card-body">
                                     <div class="d-flex justify-content-between">
                                         <div class="d-flex flex-row align-items-center">
                                             <div>
-                                                <img src="{{ asset('uploads/products/' . $product['image']) }}"
+                                                <img src="{{ asset('uploads/products/' . $item->options->image) }}"
                                                     class="img-fluid rounded-3" alt="Shopping item" style="width: 70px;">
                                             </div>
                                             <div class="ms-3">
-                                                <p class="fw-bold">{{ $product['name'] }} </p>
+                                                <p class="fw-bold">{{ $item->name }} </p>
                                                 <p class="small mb-0">
                                                     Số lượng:
                                                     <span class="text-info ">
-                                                        <input style="width: 50px" type="number" value="{{ $product['quantity'] }}" class="form-control mt-1 quantity cart_update" min="1" />
+                                                        <input style="width: 50px" type="number"
+                                                            value="{{ $item->qty }}"
+                                                            class="form-control mt-1 quantity cart_update"
+                                                            data-rowId="{{ $item->rowId }}" />
                                                     </span>
-                                                    <p>
-                                            <p class="small mb-0">
-                                                <span>Giá tiền :
-                                                    <span class="text-primary">
-                                                        {{ number_format($product['price']) . ' VND' }}
+                                                <p>
+                                                <p class="small mb-0">
+                                                    <span>Giá tiền :
+                                                        <span class="text-primary">
+                                                            {{ number_format($item->price) . ' VND' }}
+                                                        </span>
                                                     </span>
-                                                </span>
-                                            </p>
-                                            <p class="small mb-0">
-                                                <span>Tổng tiền :
-                                                    <span class="text-primary">
-                                                        {{ number_format($product['price'] * $product['quantity']) . ' VND' }}
+                                                </p>
+                                                <p class="small mb-0">
+                                                    <span>Tổng tiền :
+                                                        <span class="text-primary">
+                                                            {{ number_format($item->price * $item->qty) . ' VND' }}
+                                                        </span>
                                                     </span>
-                                                </span>
-                                            </p>
+                                                </p>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class=" align-items-center">
-                                        <a href="" class="btn btn-outline-danger border-0 cart-remove"><i
-                                                class="bx bx-trash"></i></a>
+                                        <div class=" align-items-center">
+                                            <i class="btn btn-outline-danger border-0 bx bx-trash"
+                                                onclick="window.location = './cart/delete-to-cart/{{ $item->rowId }}'"></i>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                </div>
-                @endforeach
-                @endif
-                <hr>
-                <div class="d-flex justify-content-between">
-                    <p>Tổng tiền : <span>{{ number_format($total) . ' VND' }}</span></p>
-                    <div class="">
-                        <a href="" class="btn btn-primary">Thanh toán</a>
-                    </div>
+                        @endforeach
+                        <hr>
+                        <div class="d-flex justify-content-between">
+                            <div class="">
+                                <p>Tổng tiền:
+                                    <span>{{ $subtotal }}</span>
+                                </p>
+                            </div>
+                            <div class="">
+                                <a href="{{route('checkout.load')}}" class="btn btn-primary">Thanh toán</a>
+                            </div>
+                        </div>
+                    @else
+                        <p>Giỏ hàng trống</p>
+                    @endif
+
                 </div>
             </div>
         </div>
-    </div>
-    <!-- End Cart-->
+        <!-- End Cart-->
 
     </div>
 @endsection
 @push('js')
     <script>
-        // change quantity
-        $(document).ready(function() {
-            var quantitiy = 0;
-            $('.quantity-right-plus').click(function(e) {
-                e.preventDefault();
-                var quantity = parseInt($('#quantity').val());
-                $('#quantity').val(quantity + 1);
-            });
-            $('.quantity-left-minus').click(function(e) {
-                e.preventDefault();
-                var quantity = parseInt($('#quantity').val());
-                if (quantity > 0) {
-                    $('#quantity').val(quantity - 1);
-                }
-            });
+        const rowId = $button.parent().find('input').data('rowId');
+        updateCart(rowId, newVal);
 
-        });
-        // Update quantity
-        $(".cart_update").change(function(e) {
-            e.preventDefault();
-
-            var ele = $(this);
+        function updateCart(rowId, qty: qty) {
             $.ajax({
-                url: '{{ route('cart.update') }}',
-                method: "patch",
+                type: "GET",
+                url: "cart/update",
                 data: {
-                    _token: '{{ csrf_token() }}',
-                    id: ele.parents(".cart").attr("data-id"),
-                    quantity: ele.parents(".cart").find(".quantity").val()
+                    rowId: rowId,
+                    qty = qty,
                 },
                 success: function(response) {
-                    window.location.reload();
+                    alert('Cập nhật thành công !');
                 }
             });
-        });
-        $('.cart-remove').click(function(e) {
-            e.preventDefault();
-            console.log('a');
-            var ele = $(this);
-
-            if (confirm("Bạn có muốn xoá sản phẩm khỏi giỏ hàng ?")) {
-                $.ajax({
-                    url: '{{ route('cart.remove') }}',
-                    method: "DELETE",
-                    data: {
-                        _token: '{{ csrf_token() }}',
-                        id: ele.parents(".cart").attr("data-id")
-                    },
-                    success: function(response) {
-                        window.location.reload();
-                    }
-                });
-            }
-        });
+        }
     </script>
 @endpush

@@ -55,67 +55,61 @@
                     </li>
 
                     <!-- Category -->
-                    <li class="menu-header small text-uppercase">
-                        <span class="menu-header-text">Danh Mục</span>
+                    <li class="menu-header">
                     </li>
                     <li class="menu-item">
                         <a href="{{route('category.index')}}" class="menu-link ">
-                            <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                            <i class="menu-icon tf-icons bx bx-category"></i>
                             <div data-i18n="Account Settings">QL Danh Mục</div>
                         </a>
                     </li>
 
                     <!-- Sub Category -->
-                    <li class="menu-header small text-uppercase">
-                        <span class="menu-header-text">Danh Mục Nhỏ</span>
+                    <li class="menu-header">
                     </li>
-                    <li class="menu-item active">
+                    <li class="menu-item">
                         <a href="{{route('subcategory.index')}}" class="menu-link ">
-                            <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                            <i class="menu-icon tf-icons bx bx-layer"></i>
                             <div data-i18n="Account Settings">QL Danh Mục Nhỏ</div>
                         </a>
                     </li>
 
                     <!-- Product -->
-                    <li class="menu-header small text-uppercase">
-                        <span class="menu-header-text">Sản Phẩm</span>
+                    <li class="menu-header">
                     </li>
                     <li class="menu-item">
                         <a href="{{route('product.index')}}" class="menu-link ">
-                            <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                            <i class="menu-icon tf-icons bx bx-cube-alt"></i>
                             <div data-i18n="Account Settings">QL Sản Phẩm</div>
                         </a>
                     </li>
 
                     <!-- Order -->
-                    <li class="menu-header small text-uppercase">
-                        <span class="menu-header-text">Đơn Hàng</span>
+                    <li class="menu-header">
                     </li>
                     <li class="menu-item">
                         <a href="javascript:void(0);" class="menu-link ">
-                            <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                            <i class="menu-icon tf-icons bx bx-cart-alt"></i>
                             <div data-i18n="Account Settings">QL Đơn Hàng</div>
                         </a>
                     </li>
 
                     <!-- Comment -->
-                    <li class="menu-header small text-uppercase">
-                        <span class="menu-header-text">Bình Luận</span>
+                    <li class="menu-header">
                     </li>
                     <li class="menu-item">
                         <a href="javascript:void(0);" class="menu-link ">
-                            <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                            <i class="menu-icon tf-icons bx bx-message-rounded-dots"></i>
                             <div data-i18n="Account Settings">QL Bình Luận</div>
                         </a>
                     </li>
 
                     <!-- Account -->
-                    <li class="menu-header small text-uppercase">
-                        <span class="menu-header-text">Tài Khoản</span>
+                    <li class="menu-header">
                     </li>
                     <li class="menu-item">
                         <a href="javascript:void(0);" class="menu-link ">
-                            <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                            <i class="menu-icon tf-icons bx bx-user"></i>
                             <div data-i18n="Account Settings">QL Tài Khoản</div>
                         </a>
                     </li>
@@ -232,7 +226,6 @@
         <div class="layout-overlay layout-menu-toggle"></div>
     </div>
     <!-- / Layout wrapper -->
-    <script src="{{ asset('assets/vendor/libs/jquery/jquery.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/popper/popper.js') }}"></script>
     <script src="{{ asset('assets/vendor/js/bootstrap.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>

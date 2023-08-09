@@ -2,7 +2,8 @@
 @section('content')
     {{-- Notifications Error --}}
     @if ($errors->any())
-        <div class="bs-toast toast-placement-ex toast fade bg-danger mx-3 end-0 show" role="alert" aria-live="assertive" aria-atomic="true" data-delay="1000">
+        <div class="bs-toast toast-placement-ex toast fade bg-danger mx-3 end-0 show" role="alert" aria-live="assertive"
+            aria-atomic="true" data-delay="1000">
             <div class="toast-header">
                 <i class="bx bx-bell me-2"></i>
                 <div class="me-auto fw-semibold">Có lỗi</div>
@@ -30,7 +31,11 @@
                         <div class="row">
                             <div class="col mb-3">
                                 <label for="nameWithTitle" class="form-label">Tên Danh Mục</label>
-                                <input type="text" id="nameWithTitle" class="form-control" name="name" value="{{ old('name') }}">
+                                <input type="text" id="nameWithTitle" class="form-control" name="name"
+                                    value="{{ old('name') }}">
+                                    @error('name')
+                                        <div class="errors-mess"><i class='bx bx-error-circle'></i>{{ $message }}</div>
+                                    @enderror
                             </div>
                         </div>
                         <div class="form-check form-switch">
@@ -47,20 +52,37 @@
         </div>
     </div>
 
-    {{-- Category --}}
-    <h5 class="fw-bold mb-4 py-3">
-        <span class="text-muted fw-light">Danh Mục /</span>
-        Danh Sách
-    </h5>
-    <div class="row">
-        <div class="col-lg-4 col-md-4 order-0 mb-4">
-            <div class="badge bg-label-info">
-                <button class="btn text-info" data-bs-toggle="modal" data-bs-target="#modalCenter">Thêm Danh Mục</button>
+    <!-- Breadcrumb -->
+    <div class="card mb-2">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mt-3 px-3">
+                <li class="breadcrumb-item">
+                    <a href="{{ route('admin') }}">Trang chủ</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="">Danh Mục</a>
+                </li>
+                <li class="breadcrumb-item active">Danh Sách</li>
+            </ol>
+        </nav>
+    </div>
+    <!-- End Breadcrumb -->
+
+    <!-- Start Button Add Category -->
+    <div class="card mb-2">
+        <div class="row">
+            <div class="col-lg-4 col-md-4 order-0 my-3 mx-2">
+                <div class="">
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCenter">
+                        Thêm Danh Mục
+                    </button>
+                </div>
             </div>
-
-
         </div>
     </div>
+    <!-- End Button Add Category -->
+
+    <!-- Start Datatable Category -->
     <div class="card">
         <div class="table-responsive text-nowrap">
             <table class="table-hover table">
@@ -77,7 +99,8 @@
                     {{-- Load Data Category --}}
                     @foreach ($categories as $category)
                         <tr>
-                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{ $category->id }}</strong></td>
+                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{ $category->id }}</strong>
+                            </td>
                             <td>{{ $category->name }}</td>
                             <td>
                                 {{ $category->slug }}
@@ -91,14 +114,17 @@
                             </td>
                             <td>
                                 <div class="d-flex">
-                                    <a href="{{route('category.edit', $category->id)}}" class="btn btn-link p-0 ms-2 editButton" data-bs-toggle="tooltip"
-                                        data-bs-placement="top" aria-label="Edit" data-bs-original-title="Sửa danh mục"><i class="bx bx-edit-alt me-1"></i></a>
+                                    <a href="{{ route('category.edit', $category->id) }}"
+                                        class="btn btn-link p-0 ms-2 editButton" data-bs-toggle="tooltip"
+                                        data-bs-placement="top" aria-label="Edit" data-bs-original-title="Sửa danh mục"><i
+                                            class="bx bx-edit-alt me-1"></i></a>
 
                                     <form action="{{ route('category.destroy', $category->id) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <button class="btn btn-link p-0 ms-2 show_confirm text-danger" type="submit" data-bs-toggle="tooltip" data-bs-placement="top"
-                                            aria-label="Delete" data-bs-original-title="Xoá danh mục"><i class="bx bx-trash me-1"></i></button>
+                                        <button class="btn btn-link p-0 ms-2 show_confirm text-danger" type="submit"
+                                            data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Delete"
+                                            data-bs-original-title="Xoá danh mục"><i class="bx bx-trash me-1"></i></button>
                                     </form>
                                 </div>
                             </td>
@@ -109,14 +135,17 @@
             </table>
         </div>
     </div>
+    <!-- End Datatable Category -->
+
 @endsection
 
 @push('js')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
-        integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous"
-        referrerpolicy="no-referrer"></script>
+        integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="{{ asset('assets/vendor/libs/jquery/jquery.js') }}"></script>
+        
     <script>
-    
         // Show Alert Confirm Delete
         $('.show_confirm').click(function(event) {
             var form = $(this).closest("form");

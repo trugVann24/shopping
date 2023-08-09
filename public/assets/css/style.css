@@ -199,12 +199,18 @@ a.google span {
 }
 .errors-mess {
     font-size: 1.4rem;
-    color: #000;
-    background-color: #fdedef;
+    color: #e33939;
+    background-color: #fcefef;
     margin-top: 1rem;
     padding: 0.6rem 1rem;
+    border: 1px solid #e33939;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
 }
-
+.errors-mess i{
+    padding: 4px 6px 0 0;
+}
 @media screen and (max-width: 400px) {
     .form {
         padding: 2rem 1rem;

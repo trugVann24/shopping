@@ -110,18 +110,35 @@
         </div>
     </div>
 
-    {{-- Product --}}
-    <h5 class="fw-bold mb-4 py-3">
-        <span class="text-muted fw-light">Danh Mục /</span>
-        Danh Sách
-    </h5>
+<!-- Breadcrumb -->
+<div class="card mb-2">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mt-3 px-3">
+            <li class="breadcrumb-item">
+                <a href="{{ route('admin') }}">Trang chủ</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="">Sản Phẩm</a>
+            </li>
+            <li class="breadcrumb-item active">Danh Sách</li>
+        </ol>
+    </nav>
+</div>
+<!-- End Breadcrumb -->
+
+<!-- Start Button Add Category -->
+<div class="card mb-2">
     <div class="row">
-        <div class="col-lg-4 col-md-4 order-0 mb-4">
-            <div class="badge bg-label-info">
-                <button class="btn text-info" data-bs-toggle="modal" data-bs-target="#modalCenter">Thêm Sản Phẩm</button>
+        <div class="col-lg-4 col-md-4 order-0 my-3 mx-2">
+            <div class="">
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCenter">
+                    Thêm Sản Phẩm
+                </button>
             </div>
         </div>
     </div>
+</div>
+<!-- End Button Add Category -->
     <div class="card">
         <div class="table-responsive text-nowrap">
             <table class="table-hover table">
@@ -186,6 +203,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
         integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous"
         referrerpolicy="no-referrer"></script>
+        <script src="{{ asset('assets/vendor/libs/jquery/jquery.js') }}"></script>
     <script>
         $(document).ready(function () {
             $('.show_product_details').click(function (e) { 

@@ -111,7 +111,7 @@
                                                         class="text-muted">(1.23k)</span>
                                                 </h6>
                                                 <div class="d-flex align-items-center justify-content-center mt-3">
-                                                    <a href="{{route('cart.add', [$item->id])}}" class="btn btn-outline-primary d-flex align-items-center me-3"><i
+                                                    <a href="{{route('cart.add', $item->id)}}" class="btn btn-outline-primary d-flex align-items-center me-3"><i
                                                             class="bx bx-cart me-1"></i>Thêm giỏ hàng</a>
                                                     <a href="javascript:;" class="btn rounded-pill btn-icon btn-outline-danger"><i class="bx bx-heart"></i></a>
                                                 </div>

@@ -10,19 +10,19 @@
                     <input type="text" placeholder="Họ và tên" class="input" name="name">
                 </div>
                 @error('name')
-                    <div class="errors-mess">{{ $message }}</div>
+                    <div class="errors-mess"><i class='bx bx-error-circle'></i>{{ $message }}</div>
                 @enderror
                 <div class="field input-field">
                     <input type="email" placeholder="Email" class="input" name="email">
                 </div>
                 @error('email')
-                    <div class="errors-mess">{{ $message }}</div>
+                    <div class="errors-mess"><i class='bx bx-error-circle'></i>{{ $message }}</div>
                 @enderror
                 <div class="field input-field">
                     <input type="password" placeholder="Mật khẩu" class="password" name="password">
                 </div>
                 @error('password')
-                    <div class="errors-mess">{{ $message }}</div>
+                    <div class="errors-mess"><i class='bx bx-error-circle'></i>{{ $message }}</div>
                 @enderror
                 <div class="field input-field">
                     <input type="password" placeholder="Xác nhận mật khẩu" class="password" name="password_confirmation">

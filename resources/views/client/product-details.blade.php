@@ -3,16 +3,15 @@
 @section('content')
     <div class="py-2"></div>
     <div class="container my-5">
-
         <!-- Breadcrumb -->
         <div class="card mb-2">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mt-3 px-3">
                       <li class="breadcrumb-item">
-                        <a href="javascript:void(0);">Home</a>
+                        <a href="{{route('home')}}">Trang chủ</a>
                       </li>
                       <li class="breadcrumb-item">
-                        <a href="javascript:void(0);">Library</a>
+                        <a href="">Chi tiết</a>
                       </li>
                       <li class="breadcrumb-item active">Data</li>
                     </ol>
@@ -81,7 +80,7 @@
                             </div>
                         </div>
                         <div class="mt-3">
-                            <button class="btn btn-outline-primary "><i class="bx bx-cart me-1 mb-1"></i>Thêm vào giỏ hàng</button>
+                            <a href="" class="btn btn-outline-primary "><i class="bx bx-cart me-1 mb-1"></i>Thêm vào giỏ hàng</a>
 
                             <button class="btn btn-outline-danger mx-2">Mua ngay</button>
                         </div>
