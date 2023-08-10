@@ -1,4 +1,4 @@
-@extends('layouts.client')
+@extends('layouts.client.master')
 
 @section('content')
     <div class="py-2"></div>
@@ -80,7 +80,7 @@
                             </div>
                         </div>
                         <div class="mt-3">
-                            <a href="" class="btn btn-outline-primary "><i class="bx bx-cart me-1 mb-1"></i>Thêm vào giỏ hàng</a>
+                            <a href="{{route('cart.add', $product_details->id)}}" class="btn btn-outline-primary "><i class="bx bx-cart me-1 mb-1"></i>Thêm vào giỏ hàng</a>
 
                             <button class="btn btn-outline-danger mx-2">Mua ngay</button>
                         </div>
@@ -93,7 +93,7 @@
         <div class="card mt-3">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-lg-8 text-center">
+                    <div class="col-lg-8 text-center border-end">
                         <h4 class="text-center mb-4 pb-2">Chi tiết sản phẩm</h4>
                         <span>
                             {!! $product_details->description !!}

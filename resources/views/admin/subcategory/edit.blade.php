@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.admin.master')
 @section('content')
     {{-- Notifications Error --}}
     @if ($errors->any())
@@ -35,7 +35,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalCenterTitle">Sửa Danh Mục</h5>
+                <h5 class="modal-title" id="modalCenterTitle">Sửa Danh Mục Phụ</h5>
             </div>
             <form action="{{ route('subcategory.update') }}" method="POST">
                 @csrf
@@ -56,7 +56,7 @@
                     </div>
                     <div class="row">
                         <div class="col mb-3">
-                            <label for="nameWithTitle" class="">Danh Mục Nhỏ</label>
+                            <label for="nameWithTitle" class="">Danh Mục Phụ</label>
                             <input type="text" id="nameWithTitle" class="form-control" name="name" value="{{ $subcategories->name }}">
                         </div>
                     </div>
@@ -67,7 +67,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Sửa danh mục</button>
+                    <button type="submit" class="button-add">Sửa danh mục phụ</button>
                 </div>
             </form>
         </div>

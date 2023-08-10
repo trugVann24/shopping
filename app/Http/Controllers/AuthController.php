@@ -74,15 +74,54 @@ class AuthController extends Controller
         return view('admin.index');
     }
 
-    public function home(){
-        $categories = Category::get();
-        $sub_categories = SubCategory::get();
-        $products = Product::get();
+    public function home(Request $request){
         $cart = Cart::content();
+        $products = Product::paginate(6);
+
+        if ($request->ajax()) {
+            $html = '';
+
+            foreach ($products as $product) {
+                $html .= '
+                            <div class="col-sm-6 col-xl-4 mb-3 " >
+                                <div class="border rounded item-product">
+                                    <a href = "/home/product-details/' . $product->id . '">
+                                        <div class="card-body">
+                                            <div class="d-flex align-items-center justify-content-between">
+                                                    <div class="d-flex justify-content-center flex-wrap align-items-center mb-2 pb-1">
+                                                    <img src="uploads/products/'. $product->image .'" alt=""
+                                                        class="img-fluid rounded-3 mb-2">
+                                                    <div class="text-center mt-2">
+                                                        <span class="d-block text-black fw-bold">' . $product->name . '</span>
+                                                        <span class="text-danger fw-bold mt-2">' . $product->discount_price . ' VNĐ</span>
+                                                        <span class="d-block text-secondary fw-bold">' . $product->price . ' VNĐ</span>
+                                                            <div class="mt-1">
+                                                            <h6 class="d-flex align-items-center justify-content-center gap-1 mb-0">
+                                                                4.4 <span class="text-warning"><i
+                                                                        class="bx bxs-star me-1 mb-1"></i></span><span
+                                                                    class="text-muted">(1.23k)</span>
+                                                            </h6>
+                                                    </div>
+                                                    <div class="mt-2">
+                                                        <a href="/home/cart/add-to-cart/' . $product->id . '"
+                                                            class="d-flex align-items-center me-3 button-add">
+                                                            <i class="bx bx-cart me-1" ></i>Thêm giỏ hàng</a>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                
+                ';
+            }
+
+            return $html;
+        }
+
         return view('client.index', compact(
-            'categories', 
-            'sub_categories', 
-            'products',
             'cart'
         ));
     }
@@ -93,4 +132,5 @@ class AuthController extends Controller
         Auth::logout();
         return redirect()->route('login');
     }
+
 }

@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.admin.master')
 
 @section('content')
     {{-- Notifications Error --}}
@@ -97,7 +97,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Sửa sản phẩm</button>
+                        <button type="submit" class="button-add">Sửa sản phẩm</button>
                     </div>
                 </form>
             </div>

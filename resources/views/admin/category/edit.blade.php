@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.admin.master')
 @section('content')
 <!-- Breadcrumb -->
 <div class="card mb-2">
@@ -44,7 +44,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Sửa danh mục</button>
+                    <button type="submit" class="button-add">Sửa danh mục</button>
                 </div>
             </form>
         </div>

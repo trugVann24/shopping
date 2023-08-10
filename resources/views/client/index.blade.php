@@ -1,4 +1,4 @@
-@extends('layouts.client')
+@extends('layouts.client.master')
 
 @section('content')
     <div class="row mb-3">
@@ -49,22 +49,43 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid">
-
-        <div class="row mb-4 g-3">
+    <div class="container-fluid ">
+        <div class="row mb-4 g-3 rounded">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="text-center">Danh Mục</h5>
+                    <div class="demo-inline-spacing text-center">
+                        @php
+                            $sub_categories = App\Models\SubCategory::where('status', '1')
+                                ->where('status', '1')
+                                ->get();
+                        @endphp
+                        @foreach ($sub_categories as $item)
+                            <a href="" class="badge bg-primary">{{ $item->name }}</a>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-4 g-3 bg-white rounded">
             <div class="col-sm-6 col-xl-3">
-                <div class="card">
+                <div class="border rounded">
                     <div class="card-body">
                         <div class="divider">
                             <div class="divider-text">Tìm kiếm sản phẩm</div>
                         </div>
-                        @foreach ($sub_categories as $item)
-                            <div class="form-check mb-3">
+                        @php
+                            $category = App\Models\Category::where('status', '1')
+                                ->where('status', '1')
+                                ->get();
+                        @endphp
+                        @foreach ($category as $item)
+                            <div class="form-check mb-3 ">
                                 <input class="form-check-input" type="checkbox" value="" id="{{ $item->id }}">
-                                <label class="form-check-label cursor-pointer" for="{{ $item->id }}"> {{ $item->name }} </label>
+                                <label class="form-check-label cursor-pointer" for="{{ $item->id }}">
+                                    {{ $item->name }} </label>
                             </div>
                         @endforeach
-
                         <div class="divider">
                             <div class="divider-text">Đánh Giá</div>
                         </div>
@@ -92,40 +113,107 @@
                 </div>
             </div>
             <div class="col-xl-9">
-                <div class="row">
-                    @foreach ($products as $item)
-                        <div class="col-sm-6 col-xl-4 mb-3">
-                            <div class="card">
-                                <div class="card-body ">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <div class="d-flex justify-content-center flex-wrap align-items-center mb-2 pb-1">
-                                            <img src="{{ asset('uploads/products/' . $item->image) }}" alt="" class="img-fluid rounded-3 mb-2">
-
-                                            <div class="text-center mt-2">
-                                                <a href="{{route('productDetails.load', $item->id)}}" class="d-block card-link pull-up">{{ $item->name }}</a>
-                                                <span class="fw-bold text-black">{{ $item->price }} VNĐ</span>
-                                            </div>
-                                            <div class="mt-1">
-                                                <h6 class="d-flex align-items-center justify-content-center gap-1 mb-0">
-                                                    4.4 <span class="text-warning"><i class="bx bxs-star me-1 mb-1"></i></span><span
-                                                        class="text-muted">(1.23k)</span>
-                                                </h6>
-                                                <div class="d-flex align-items-center justify-content-center mt-3">
-                                                    <a href="{{route('cart.add', $item->id)}}" class="btn btn-outline-primary d-flex align-items-center me-3"><i
-                                                            class="bx bx-cart me-1"></i>Thêm giỏ hàng</a>
-                                                    <a href="javascript:;" class="btn rounded-pill btn-icon btn-outline-danger"><i class="bx bx-heart"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    @endforeach
+                <div class="row" id="product-data">
+                    <!--Product Data-->
+                </div>
+                <div class="text-center m-3">
+                    <button class="button-add" id="load-more" data-paginate="2">Xem thêm</button>
+                    <p class="invisible">Không tìm thấy sản phẩm</p>
                 </div>
             </div>
         </div>
     </div>
 @endsection
+
+@push('js')
+    <script>
+        // $(document).ready(function() {
+        //     $.ajax({
+        //         type: "GET",
+        //         url: "{{ route('home') }}",
+        //         success: function(data) {
+        //             if (data.products.length > 0) {
+        //                 for (let index = 0; index < data.products.length; index++) {
+        //                     let img = data.products[index]['image'];
+        //                     let price = data.products[index]['price'];
+        //                     let discount_price = data.products[index]['discount_price'];
+        //                     let name = data.products[index]['name'];
+        //                     $('#product-data').append(`
+        //                 <div class="col-sm-6 col-xl-4 mb-3 " >
+        //                     <div class="border rounded item-product">
+        //                         <a href = "/home/product-details/` + data.products[index]['id'] + `" class = "">
+        //                         <div class="card-body ">
+        //                             <div class="d-flex align-items-center justify-content-between">
+
+        //                                     <div class="d-flex justify-content-center flex-wrap align-items-center mb-2 pb-1">
+        //                                     <img src="{{ asset('uploads/products/`+img+`') }}" alt=""
+        //                                         class="img-fluid rounded-3 mb-2">
+        //                                     <div class="text-center mt-2">
+        //                                         <span class="d-block text-black fw-bold">` + name + `</span>
+        //                                         <span class="text-danger fw-bold mt-2">` + discount_price + ` VNĐ</span>
+        //                                         <span class="d-block text-secondary fw-bold">` + price + ` VNĐ</span>
+        //                                             <div class="mt-1">
+        //                                             <h6 class="d-flex align-items-center justify-content-center gap-1 mb-0">
+        //                                                 4.4 <span class="text-warning"><i
+        //                                                         class="bx bxs-star me-1 mb-1"></i></span><span
+        //                                                     class="text-muted">(1.23k)</span>
+        //                                             </h6>
+        //                                     </div>
+        //                                     <div class="mt-2">
+        //                                         <a href="/home/cart/add-to-cart/` + data.products[index]['id'] + `"
+        //                                             class="d-flex align-items-center me-3 button-add">
+        //                                             <i class="bx bx-cart me-1" ></i>Thêm giỏ hàng</a>
+        //                                     </div>
+        //                                     </div>
+        //                                 </div>
+        //                             </div>
+        //                         </div>
+        //                         </a>
+        //                     </div>
+        //             </div>
+        //             `);
+        //                 }
+        //             } else {
+        //                 $('#product-data').append('<span>Không có sản phẩm</span>');
+        //             }
+        //         },
+        //         error: function(err) {
+        //             console.log(err.responseText);
+        //         }
+        //     });
+        // });
+
+        var paginate = 1;
+        loadMoreData(paginate);
+
+        $('#load-more').click(function() {
+            var page = $(this).data('paginate');
+            loadMoreData(page);
+            $(this).data('paginate', page + 1);
+        });
+        // run function when user click load more button
+        function loadMoreData(paginate) {
+            $.ajax({
+                    url: '?page=' + paginate,
+                    type: 'get',
+                    datatype: 'html',
+                    beforeSend: function() {
+                        $('#load-more').text('Đang tải...');
+                    }
+                })
+                .done(function(data) {
+                    if (data.length == 0) {
+                        $('.invisible').removeClass('invisible');
+                        $('#load-more').hide();
+                        return;
+                    } else {
+                        $('#load-more').text('Xem thêm sản phẩm');
+                        $('#product-data').append(data);
+                    }
+                })
+                .fail(function(jqXHR, ajaxOptions, thrownError) {
+                    alert('Đã xảy ra sự cố');
+                });
+        }
+    </script>
+@endpush

@@ -1,4 +1,4 @@
-@extends('layouts.client')
+@extends('layouts.client.master')
 
 @section('content')
     <div class="py-2"></div>

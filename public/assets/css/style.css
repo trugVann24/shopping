@@ -216,3 +216,16 @@ a.google span {
         padding: 2rem 1rem;
     }
 }
+
+
+.btn-add-cart{
+    font-size: 1.4rem;
+    color: #e33939;
+    background-color: #fcefef;
+    margin-top: 1rem;
+    padding: 0.6rem 1rem;
+    border: 1px solid #e33939;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+}

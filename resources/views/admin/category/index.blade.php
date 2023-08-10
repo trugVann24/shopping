@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.admin.master')
 @section('content')
     {{-- Notifications Error --}}
     @if ($errors->any())
@@ -45,7 +45,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Thêm danh mục</button>
+                        <button type="submit" class="button-add">Thêm danh mục</button>
                     </div>
                 </form>
             </div>
@@ -71,11 +71,17 @@
     <!-- Start Button Add Category -->
     <div class="card mb-2">
         <div class="row">
-            <div class="col-lg-4 col-md-4 order-0 my-3 mx-2">
-                <div class="">
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCenter">
+            <div class="col-lg-4 col-md-4 order-0 my-3 mx-2 col-sm-6">
+                    <button class="button-add" data-bs-toggle="modal" data-bs-target="#modalCenter">
                         Thêm Danh Mục
                     </button>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 order-0 my-3 mx-2 border-end">
+                <div class="navbar-nav align-items-center border-start ">
+                    <div class="nav-item d-flex align-items-center">
+                        <i class="bx bx-search fs-4 lh-0"></i>
+                        <input type="text" class="form-control border-0 shadow-none" placeholder="Tìm kiếm..." aria-label="Search...">
+                    </div>
                 </div>
             </div>
         </div>
@@ -143,7 +149,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
         integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="{{ asset('assets/vendor/libs/jquery/jquery.js') }}"></script>
         
     <script>
         // Show Alert Confirm Delete

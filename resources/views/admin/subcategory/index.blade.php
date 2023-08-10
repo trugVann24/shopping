@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.admin.master')
 @section('content')
     {{-- Notifications Error --}}
     @if ($errors->any())
@@ -41,7 +41,7 @@
                         </div>
                         <div class="row">
                             <div class="col mb-3">
-                                <label for="nameWithTitle" class="">Danh Mục Nhỏ</label>
+                                <label for="nameWithTitle" class="">Danh Mục Phụ</label>
                                 <input type="text" id="nameWithTitle" class="form-control" name="name">
                             </div>
                         </div>
@@ -53,7 +53,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">Thêm danh mục nhỏ</button>
+                        <button type="submit" class="button-add">Thêm danh mục phụ</button>
                     </div>
                 </form>
             </div>
@@ -81,7 +81,7 @@
         <div class="row">
             <div class="col-lg-4 col-md-4 order-0 my-3 mx-2">
                 <div class="">
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCenter">
+                    <button class="button-add" data-bs-toggle="modal" data-bs-target="#modalCenter">
                         Thêm Danh Mục Phụ
                     </button>
                 </div>
@@ -143,7 +143,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
         integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous"
         referrerpolicy="no-referrer"></script>
-    <script src="{{ asset('assets/vendor/libs/jquery/jquery.js') }}"></script>
 
     <script>
         // Show Alert Confirm Delete

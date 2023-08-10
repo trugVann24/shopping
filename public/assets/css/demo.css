@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&display=swap");
 
 body {
-  font-family: 'Open Sans', sans-serif;
+    font-family: "Open Sans", sans-serif;
 }
 .menu .app-brand.demo {
     height: 64px;
@@ -126,53 +126,53 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 16px 14%;
-  }
+}
 
-  .logo-client  img {
+.logo-client img {
     width: 100%;
     height: auto;
-  }
+}
 
-  .navbar-client  {
+.navbar-client {
     display: flex;
     margin-bottom: 0;
-  }
-  
-  .navbar-client  li {
+}
+
+.navbar-client li {
     list-style: none;
-  }
-  
-  .navbar-client  a {
+}
+
+.navbar-client a {
     color: #000;
     font-size: 16px;
     font-weight: 400;
     margin: 10px 20px;
     transition: 0.25s;
-  }
+}
 
-  .navbar-client  a:hover {
+.navbar-client a:hover {
     color: #ff6e88;
-  }
+}
 
-  .h-icons-client  {
+.h-icons-client {
     display: flex;
     align-items: center;
-  }
+}
 
-  .h-icons-client  i {
+.h-icons-client i {
     font-size: 20px;
     color: #000;
     margin-left: 5px;
     margin-right: 20px;
     transition: 0.25s;
-  }
+}
 
-  .h-icons-client  i:hover {
+.h-icons-client i:hover {
     transform: translateY(-4px);
     color: #ff6e88;
-  }
+}
 
-  #menu-icon-client  {
+#menu-icon-client {
     height: 30px;
     width: 30px;
     background-color: #fff;
@@ -184,68 +184,68 @@ body {
     z-index: 10001;
     cursor: pointer;
     display: none;
-  }
+}
 
-  @media screen and (max-width: 1200px) {
+@media screen and (max-width: 1200px) {
     .header-client {
-      padding: 12px 3%;
+        padding: 12px 3%;
     }
-  }
+}
 
-  @media screen and (max-width: 920px) {
-    #menu-icon-client  {
-      display: block;
-      height: 30px;
-      width: 30px;
-      background-color: #fff;
-      color: #000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 20px;
-      z-index: 10001;
-      cursor: pointer;
+@media screen and (max-width: 920px) {
+    #menu-icon-client {
+        display: block;
+        height: 30px;
+        width: 30px;
+        background-color: #fff;
+        color: #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+        z-index: 10001;
+        cursor: pointer;
     }
 
     .navbar-client {
-      position: absolute;
-      top: -800px;
-      left: 0;
-      right: 0;
-      display: flex;
-      flex-direction: column;
-      text-align: left;
-      background-color: #fff;
-      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-      transition: 0.25s;
+        position: absolute;
+        top: -800px;
+        left: 0;
+        right: 0;
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        background-color: #fff;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        transition: 0.25s;
     }
-    .navbar-client  a{
-      display: block;
-      padding: 5px;
-      margin: 15px;
-      font-weight: 20px;
-      font-weight: 500;
-      transition: 0.25s;
+    .navbar-client a {
+        display: block;
+        padding: 5px;
+        margin: 15px;
+        font-weight: 20px;
+        font-weight: 500;
+        transition: 0.25s;
     }
 
-    .navbar-client  a:hover{
-      color: #ff6e88;
+    .navbar-client a:hover {
+        color: #ff6e88;
     }
-    .navbar-client.active-client{
-      top: 100%;
+    .navbar-client.active-client {
+        top: 100%;
     }
-  }
+}
 
-  .c-item {
+.c-item {
     height: 480px;
-  }
-  
-  .c-img {
+}
+
+.c-img {
     height: 100%;
     object-fit: cover;
     filter: brightness(0.6);
-  }
-  .errors-mess {
+}
+.errors-mess {
     font-size: 14px;
     color: #e33939;
     background-color: #fcefef;
@@ -256,6 +256,41 @@ body {
     display: flex;
     align-items: center;
 }
-.errors-mess i{
+.button-add {
+    padding: 6px 10px;
+    background: #fcefef;
+    border: 1px solid #fe5b00;
+    color: #fe5b00;
+    transition: 0.25s;
+}
+.item-product{
+    transition: 0.25s;
+    cursor: pointer;
+}
+.item-product:hover{
+    transform: scale(1.02);
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+.button-add:hover{
+    background: #fe5b00;
+    border: 1px solid #fcefef;
+    color: #fcefef;
+
+}
+
+
+.errors-mess i {
     padding: 4px 6px 0 0;
+}
+.dropdown-hover:hover > .dropdown-menu {
+    display: inline-block;
+}
+
+.dropdown-hover > .dropdown-toggle:active {
+    /*Without this, clicking will make it sticky*/
+    pointer-events: none;
+}
+.outlinenone{
+    outline: none;
+    
 }
